@@ -1,0 +1,11 @@
+{
+	"name" : "validate",
+	"version" : "0.0.1",
+	"description": "Form Validation",
+	"author" : "Jonattan Velasquez <jonattanva89@gmail.com>",
+	"license" : "MIT",
+	"repository" : {
+		"type" : "git",
+		"url" : ""
+	}
+}
