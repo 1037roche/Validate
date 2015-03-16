@@ -34,7 +34,7 @@ constraint.NotEmpty = function (id, args) {
 	// Default
 	var verify = {};
 	args.index = args.index || 0;
-	args.message = args.message || '';
+	args.message = args.message || ''; // Pendiente
 
 	// Check empty fields
 	node.value = node.value.trim();
