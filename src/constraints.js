@@ -1,7 +1,9 @@
+/* jshint -W097 */
 'use strict';
 
 // External modules
 var cache = require('./cache');
+var options = require('./options');
 
 // Regular expresion
 var reTypeInput	= /text|password|textarea|select-one/;
@@ -34,7 +36,7 @@ constraint.NotEmpty = function (id, args) {
 	// Default
 	var verify = {};
 	args.index = args.index || 0;
-	args.message = args.message || ''; // Pendiente
+	args.message = args.message || options('message').NotEmpty;
 
 	// Check empty fields
 	node.value = node.value.trim();

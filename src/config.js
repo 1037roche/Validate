@@ -1,3 +1,4 @@
+/* jshint -W097 */
 'use strict';
 
 // External modules
@@ -8,6 +9,9 @@ var options = require('./options');
 var	reMethod = /[a-zA-Z]*/;
 var	reConstraint = /@[a-zA-Z]*\([^\)]*\)/g;
 var	reArguments = /[\( ]+[A-Za-z]+='[^']*/g;
+
+// The module to be exported
+var config = module.exports = {};
 
 // Obtained by the method and arguments
 var get = function (id, attr) {
@@ -35,29 +39,38 @@ var get = function (id, attr) {
 
 	// Add validation
 	if (verify.length > 0) {
-		options('validate', {
+		config.validate.push({
 			id : id,
 			verify : verify
 		});
 	}
 };
 
-// Validation prepared
-var config = module.exports = function () {
-	// Build Selector
-	var constraint = options('constraint');
-	var selector = 'form[' + constraint + '],input[' + constraint + '],' +
-				   'select[' + constraint + '],textarea[' + constraint + ']';
+// Elements to validate
+config.validate = [];
 
-    // Gets the items to validate
-	config.checked = true;
-	var nodes = window.document.querySelectorAll(selector);
-	[].forEach.call(nodes, function (node) {
-		node.id = node.id || constraint + '-' + Math.floor(9999 * Math.random());
-		cache(node.id, node);
-		get(node.id, node.getAttribute(constraint));
-	});
-};
-
-//
 config.checked = false;
+
+// Initializes the validation
+config.init = function (configuration) {
+	if (!this.checked) {
+		// Initial configuration
+		this.checked = true;
+		options.init(configuration);
+
+		// Query selector
+		var constraint = options('constraint');
+		var selector = 'form[' + constraint + '],' +
+						'input[' + constraint + '],' +
+						'select[' + constraint + '],' +
+						'textarea[' + constraint + ']';
+
+		// Gets the items to validate
+		var nodes = window.document.querySelectorAll(selector);
+		[].forEach.call(nodes, function (node) {
+			node.id = node.id || constraint + '-' + Math.floor(9999 * Math.random());
+			cache(node.id, node);
+			get(node.id, node.getAttribute(constraint));
+		});
+	}
+};
