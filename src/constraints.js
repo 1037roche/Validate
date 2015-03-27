@@ -17,8 +17,8 @@ var message = function (label, message) {
 var response = function (verify) {
 	verify = verify || {};
 	return {
-		message  : verify.message || null,
-		inspected : (verify.inspected in verify) ? verify.inspected : false
+		message : verify.message || null,
+		inspected : ('inspected' in verify) ? verify.inspected : false
 	};
 };
 

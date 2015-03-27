@@ -32,8 +32,8 @@ module.exports = function (grunt) { 'use strict';
 
 		umd : {
 			runtime : {
-				src : 'tmp/release/validate.js',
-				dest : 'release/validate.js',
+				src : 'tmp/validate.js',
+				dest : 'tmp/validate.js',
 				template : 'umd/umd.hbs',
 				globalAlias : 'validate',
 			}
@@ -46,9 +46,7 @@ module.exports = function (grunt) { 'use strict';
 						debug : false,
 						standalone : 'validate'
 					},
-					alias : [
-
-					]
+					alias : []
 				},
 				files : {
 					'release/validate.js' : ['./tmp/validate.js']
@@ -68,6 +66,7 @@ module.exports = function (grunt) { 'use strict';
 	grunt.registerTask('default', [
 		'copy',
 		'jshint',
+		'umd',
 		'browserify',
 		'uglify',
 		'clean'
