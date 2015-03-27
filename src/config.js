@@ -49,7 +49,6 @@ var get = function (id, attr) {
 // Elements to validate
 config.validate = [];
 
-//
 config.checked = false;
 
 // Initializes the validation

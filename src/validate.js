@@ -6,11 +6,11 @@ var config = require('./config');
 var options = require('./options');
 var constraints = require('./constraints');
 
-//
+// Initializes validation
 return function (configuration) {
 	config.init(configuration);
 
-	//
+	// Execute validation
 	return function () {
 		config.validate.forEach(function (node) {
 			node.verify.forEach(function (target) {

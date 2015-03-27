@@ -4,6 +4,8 @@ module.exports = function (grunt) { 'use strict';
 	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
+		pkg : grunt.file.readJSON('package.json'),
+
 		clean : {
 			runtime : {
 				src : ['tmp']
@@ -46,7 +48,8 @@ module.exports = function (grunt) { 'use strict';
 						debug : false,
 						standalone : 'validate'
 					},
-					alias : []
+					banner : '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+							 '<%= grunt.template.today("yyyy-mm-dd") %> | created by <%= pkg.author %> */'
 				},
 				files : {
 					'release/validate.js' : ['./tmp/validate.js']
@@ -56,6 +59,10 @@ module.exports = function (grunt) { 'use strict';
 
 		uglify : {
 			runtime : {
+				options : {
+					banner : '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+							 '<%= grunt.template.today("yyyy-mm-dd") %> | created by <%= pkg.author %> */\n'
+				},
 				files : {
 					'release/validate.min.js' : ['release/validate.js']
 				}
