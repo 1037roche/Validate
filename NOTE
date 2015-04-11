@@ -1,0 +1,4 @@
+- Ids
+	- Todos los elementos que contengan un validador deben de tener un id unico 		-YA
+	- Validar cuando dos elementos contengan el mismo id
+	- Verificar los elementos en el objeto cache										-YA

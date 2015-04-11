@@ -23,12 +23,18 @@ module.exports = function (grunt) { 'use strict';
 
 		jshint : {
 			runtime : {
-				src : ['src/*.js', 'Gruntfile.js'],
+				src : ['src/*.js', 'test/**/*.js', 'Gruntfile.js', 'karma.conf.js', '!test/validate.debug.js'],
 				options : {
 					force : true,
 					jshintrc : '.jshintrc',
 					reporter : require('jshint-stylish')
 				}
+			}
+		},
+
+		karma : {
+			runtime : {
+				configFile : 'karma.conf.js'
 			}
 		},
 
@@ -54,6 +60,26 @@ module.exports = function (grunt) { 'use strict';
 				files : {
 					'release/validate.js' : ['./tmp/validate.js']
 				}
+			},
+			debug : {
+				options : {
+					alias : [
+						'./tmp/cache.js:cache',
+						'./tmp/config.js:config',
+						'./tmp/constraints.js:constraints',
+						'./tmp/options.js:options',
+						'./tmp/validate.js:validate'
+					]
+				},
+				files : {
+					'test/validate.debug.js' : [
+						'cache',
+						'config',
+						'constraints.js',
+						'options.js',
+						'validate.js'
+					]
+				}
 			}
 		},
 
@@ -74,8 +100,17 @@ module.exports = function (grunt) { 'use strict';
 		'copy',
 		'jshint',
 		'umd',
-		'browserify',
+		'browserify:runtime',
 		'uglify',
 		'clean'
+		]);
+
+	grunt.registerTask('test', [
+		'copy',
+		'jshint',
+		'umd',
+		'browserify:debug',
+		'clean',
+		'karma'
 		]);
 };

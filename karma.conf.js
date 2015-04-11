@@ -2,21 +2,21 @@ module.exports = function (config) { 'use strict';
 	config.set({
 
 		frameworks : [
-			'jasmine',
-			'commonjs'
+			'jasmine'
 		],
 
 		// list of files / patterns to load in the browser
 		files : [
-			'test/*.js',
+			'test/**/*.js',
+			'test/**/*.html',
 		],
 
     	// list of files to exclude
 		exclude : [],
 
 		preprocessors : {
-			'test/*.html': ['html2js'],
-			'test/*.js' : ['coverage']
+			'test/**/*.js' : ['coverage'],
+			'test/**/*.html': ['html2js']
 		},
 
 		// use dots reporter, as travis terminal does not support escaping sequences
@@ -58,7 +58,6 @@ module.exports = function (config) { 'use strict';
 
 	 	plugins : [
 	 		'karma-jasmine',
-	 		'karma-commonjs',
 	 		'karma-coverage',
 	 		'karma-phantomjs-launcher',
 	 		'karma-html2js-preprocessor'
