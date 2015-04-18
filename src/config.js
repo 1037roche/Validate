@@ -66,7 +66,7 @@ config.init = function (configuration) {
 						'textarea[' + constraint + ']';
 
 		// Gets the items to validate
-		var nodes = window.document.querySelectorAll(selector);
+		var nodes = options('document').querySelectorAll(selector);
 		[].forEach.call(nodes, function (node) {
 			node.id = node.id || constraint + '-' + Math.floor(9999 * Math.random());
 			cache(node.id, node);

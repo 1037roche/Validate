@@ -23,7 +23,7 @@ module.exports = function (grunt) { 'use strict';
 
 		jshint : {
 			runtime : {
-				src : ['src/*.js', 'test/**/*.js', 'Gruntfile.js', 'karma.conf.js', '!test/validate.debug.js'],
+				src : ['src/*.js', 'Gruntfile.js', 'karma.conf.js'],
 				options : {
 					force : true,
 					jshintrc : '.jshintrc',

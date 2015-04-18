@@ -1,25 +1,5 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/* jshint -W097 */
-'use strict';
-
-//
-module.exports = function (module) {
-	return function () {
-		// Arguments
-		var code = arguments[0];
-		var template = arguments[1];
-		var templateArgs = arguments;
-
-		// Build message
-		var prefix = '[' + (module ? module + '-' : '') + code + '] ';
-		var message = prefix + template.replace(/\{\d+\}/g, function (match) {
-			var index = +match.slice(1, -1);
-			return ((index + 2) < templateArgs.length) ? templateArgs[index + 2] : match;
-		});
-		return new Error(message);
-	};
-};
-},{}],"cache":[function(require,module,exports){
+/*! Validate - v0.0.1 - 2015-04-18 | created by Jonattan Velasquez <jonattanva89@gmail.com> */
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.validate = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /* jshint -W097 */
 'use strict';
 
@@ -49,7 +29,7 @@ cache.set = function (key, value) {
 	this.storage[key] = value;
 	return value;
 };
-},{"./exception":1}],"config":[function(require,module,exports){
+},{"./exception":4}],2:[function(require,module,exports){
 /* jshint -W097 */
 'use strict';
 
@@ -126,7 +106,7 @@ config.init = function (configuration) {
 		});
 	}
 };
-},{"./cache":"cache","./options":"options"}],"constraints":[function(require,module,exports){
+},{"./cache":1,"./options":5}],3:[function(require,module,exports){
 /* jshint -W097 */
 'use strict';
 
@@ -160,7 +140,7 @@ constraint.NotEmpty = function (id, args) {
 	// Checks the type of the field
 	var node = cache(id);
 	if (node.type.match(reTypeInput) === null) {
-		throw exception('NotEmpty', 'Constraint is not supported {0}', id, node.type);
+		throw exception('NotEmpty', 'Constraint is not supported for the type {0}', node.type);
 	}
 
 	// Default
@@ -177,7 +157,28 @@ constraint.NotEmpty = function (id, args) {
 
 	return response(verify);
 };
-},{"./cache":"cache","./exception":1,"./options":"options"}],"options":[function(require,module,exports){
+},{"./cache":1,"./exception":4,"./options":5}],4:[function(require,module,exports){
+/* jshint -W097 */
+'use strict';
+
+//
+module.exports = function (module) {
+	return function () {
+		// Arguments
+		var code = arguments[0];
+		var template = arguments[1];
+		var templateArgs = arguments;
+
+		// Build message
+		var prefix = '[' + (module ? module + '-' : '') + code + '] ';
+		var message = prefix + template.replace(/\{\d+\}/g, function (match) {
+			var index = +match.slice(1, -1);
+			return ((index + 2) < templateArgs.length) ? templateArgs[index + 2] : match;
+		});
+		return new Error(message);
+	};
+};
+},{}],5:[function(require,module,exports){
 /* jshint -W097 */
 'use strict';
 
@@ -232,7 +233,7 @@ options.init = function (configuration) {
 	this.set('callback', configuration.callback);
 	this.set('constraint', configuration.constraint);
 };
-},{"./cache":"cache"}],"validate":[function(require,module,exports){
+},{"./cache":1}],6:[function(require,module,exports){
 /*jshint sub:true*/
 (function (root, factory) { 'use strict';
   if (typeof define === 'function' && define.amd) {
@@ -278,4 +279,5 @@ return function (configuration) {
 	};
 };
 }));
-},{"./config":"config","./constraints":"constraints","./options":"options"}]},{},[]);
+},{"./config":2,"./constraints":3,"./options":5}]},{},[6])(6)
+});

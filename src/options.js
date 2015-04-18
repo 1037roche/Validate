@@ -26,7 +26,10 @@ options.data = {
 	constraint : 'data-constraint',
 
 	// Default message
-	message : {}
+	message : {},
+
+	// Default document
+	document : window.document
 };
 
 // Get configuration item

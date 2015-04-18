@@ -4,6 +4,7 @@
 // External modules
 var cache = require('./cache');
 var options = require('./options');
+var exception = require('./exception')('constraint');
 
 // Regular expresion
 var reTypeInput	= /text|password|textarea|select-one/;
@@ -30,7 +31,7 @@ constraint.NotEmpty = function (id, args) {
 	// Checks the type of the field
 	var node = cache(id);
 	if (node.type.match(reTypeInput) === null) {
-		throw 'Constraint is not supported \"' + id + '\"';
+		throw exception('NotEmpty', 'Constraint is not supported for the type {0}', node.type);
 	}
 
 	// Default
@@ -44,5 +45,6 @@ constraint.NotEmpty = function (id, args) {
 		verify.inspected = true;
 		verify.message = message(args.label, args.message);
 	}
+
 	return response(verify);
 };
