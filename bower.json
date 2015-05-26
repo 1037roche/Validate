@@ -3,9 +3,16 @@
 	"main" : "release/validate.js",
 	"version" : "0.0.1",
 	"ignore": [
+		"**/.*",
+		"*.md",
+		".gitignore",
 		".jshintrc",
-		"bower.json",
 		"Gruntfile.js"
+		"karma.conf.js",
+		"package.json",
+		"src",
+		"test",
+		"umd"
 	],
 	"keywords": [
 		"validation",

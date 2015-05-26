@@ -58,7 +58,7 @@ module.exports = function (grunt) { 'use strict';
 							 '<%= grunt.template.today("yyyy-mm-dd") %> | created by <%= pkg.author %> */'
 				},
 				files : {
-					'release/validate.js' : ['./tmp/validate.js']
+					'validate.js' : ['./tmp/validate.js']
 				}
 			},
 			debug : {
@@ -90,7 +90,7 @@ module.exports = function (grunt) { 'use strict';
 							 '<%= grunt.template.today("yyyy-mm-dd") %> | created by <%= pkg.author %> */\n'
 				},
 				files : {
-					'release/validate.min.js' : ['release/validate.js']
+					'validate.min.js' : ['validate.js']
 				}
 			}
 		}
