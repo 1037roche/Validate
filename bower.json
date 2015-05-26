@@ -1,0 +1,15 @@
+{
+	"name" : "validate-js",
+	"main" : "release/validate.js",
+	"version" : "0.0.1",
+	"ignore": [
+		".jshintrc",
+		"bower.json",
+		"Gruntfile.js"
+	],
+	"keywords": [
+		"validation",
+		"javascript",
+		"library"
+	]
+}
