@@ -52,17 +52,20 @@ config.validate = [];
 config.checked = false;
 
 // Initializes the validation
-config.init = function (configuration) {
+config.init = function (configuration/*, form */) {
 	if (!this.checked) {
+
 		// Initial configuration
 		this.checked = true;
+
+		// Si configuration es NULL
 		options.init(configuration);
 
 		// Query selector
 		var constraint = options('constraint');
 		var selector = 'form[' + constraint + '],' +
 						'input[' + constraint + '],' +
-						'select[' + constraint + '],' +
+						'form select[' + constraint + '],' +
 						'textarea[' + constraint + ']';
 
 		// Gets the items to validate
@@ -74,3 +77,15 @@ config.init = function (configuration) {
 		});
 	}
 };
+
+/*
+var fn = validate({
+	callback : fucntion () {
+		console.log(this.id);
+	},
+	forms : ['form_1', 'form_2']
+});
+
+fn('form_1'); // Mensajes de validacion
+
+*/

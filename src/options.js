@@ -14,6 +14,9 @@ var options = module.exports = function (key, value) {
 	return (arguments === 2) ? options.set(key, value) : options.get(key);
 };
 
+// Add function
+options.isEmpty = isEmpty;
+
 // Default
 options.data = {
 
@@ -29,7 +32,10 @@ options.data = {
 	message : {},
 
 	// Default document
-	document : window.document
+	document : window.document,
+
+ 	// Default forms
+	forms : []
 };
 
 // Get configuration item
@@ -48,7 +54,8 @@ options.set = function (key, value) {
 // Initializes the default configuration object
 options.init = function (configuration) {
 	configuration = configuration || {};
-	this.set('message', configuration.message);
 	this.set('callback', configuration.callback);
 	this.set('constraint', configuration.constraint);
+	this.set('message', configuration.message);
+	this.set('forms', configuration.forms);
 };
